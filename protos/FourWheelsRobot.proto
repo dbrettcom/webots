@@ -1,0 +1,213 @@
+PROTO FourWheelsRobot [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 1 0 0
+  field SFFloat    bodyMass     1
+]
+{
+Robot {
+  translation 0 0 -0.47
+  rotation IS rotation
+  children [
+    DEF ds_right DistanceSensor {
+      translation -0.02 0.02 0.2
+      rotation 0 1 0 5.928700306100425
+      name "ds_right"
+    }
+    DEF ds_left DistanceSensor {
+      translation 0 0.02 0.2
+      rotation 0 1 0 93.92700030610042
+      name "ds_left"
+    }
+    DEF robot Shape {
+      appearance PBRAppearance {
+        baseColor 0.988235 0.913725 0.309804
+        metalness 0
+        IBLStrength 0
+      }
+      geometry Box {
+        size 0.1 0.05 0.4
+      }
+    }
+    DEF wheel1 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.06 0 -0.15
+      }
+      device [
+        DEF wheel1 RotationalMotor {
+          name "wheel1"
+          acceleration 4
+        }
+      ]
+      endPoint DEF wheel1 Solid {
+        translation -0.06 0 -0.15
+        rotation 0.6980566290229828 -0.6980591931328655 0.15946882315914526 2.8253191937091593
+        children [
+          Solid {
+            boundingObject Cylinder {
+              height 0.02
+              radius 0.04
+            }
+            physics Physics {
+              mass 0.05
+            }
+          }
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel1"
+        boundingObject Cylinder {
+          height 0.02
+          radius 0.04
+        }
+        physics Physics {
+          mass 0.05
+        }
+      }
+    }
+    DEF wheel2 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.06 0 0.13
+      }
+      device [
+        DEF wheel2 RotationalMotor {
+          name "wheel2"
+          acceleration 4
+        }
+      ]
+      endPoint DEF wheel2 Solid {
+        translation -0.06 1.0006922902290022e-19 0.13
+        rotation -0.0047943383751777365 0.004539761117286387 0.9999782022066992 1.5689930815746302
+        children [
+          Solid {
+            boundingObject Cylinder {
+              height 0.02
+              radius 0.04
+            }
+            physics Physics {
+              mass 0.05
+            }
+          }
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel2"
+        boundingObject Cylinder {
+          height 0.02
+          radius 0.04
+        }
+        physics Physics {
+          mass 0.05
+        }
+      }
+    }
+    DEF wheel3 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.06 0 -0.15
+      }
+      device [
+        DEF wheel3 RotationalMotor {
+          name "wheel3"
+          acceleration 4
+        }
+      ]
+      endPoint DEF wheel3 Solid {
+        translation 0.05995383037688437 3.6246373526853374e-05 -0.14983822047329193
+        rotation -0.705312014532462 0.6570643936436983 0.26608522086316516 2.5851625237674978
+        children [
+          Solid {
+            boundingObject Cylinder {
+              height 0.02
+              radius 0.04
+            }
+            physics Physics {
+              mass 0.05
+            }
+          }
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel3"
+        boundingObject Cylinder {
+          height 0.02
+          radius 0.04
+        }
+        physics Physics {
+          mass 0.05
+        }
+      }
+    }
+    DEF wheel4 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.06 0 0.13
+      }
+      device [
+        DEF wheel4 RotationalMotor {
+          name "wheel4"
+          acceleration 4
+        }
+      ]
+      endPoint DEF wheel4 Solid {
+        translation 0.05998617680126963 -2.582572785367654e-06 0.13000475895740266
+        rotation -0.0011953949460862293 0.0012153970031144796 0.9999985469194681 1.5709017999775088
+        children [
+          Solid {
+            boundingObject Cylinder {
+              height 0.02
+              radius 0.04
+            }
+            physics Physics {
+              mass 0.05
+            }
+          }
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel4"
+        boundingObject Cylinder {
+          height 0.02
+          radius 0.04
+        }
+        physics Physics {
+          mass 0.05
+        }
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.1 0.05 0.4
+  }
+  physics Physics {
+    mass 0.02
+  }
+  controller "four_wheeled_collision_avoidance"
+}
+
+}
